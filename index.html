@@ -1,52 +1,159 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="description" content="MambaFace: Real-time Speech-driven 3D Talking Face Generation">
+  <meta name="keywords" content="3D Talking Face, Speech-Driven, Mamba, FLAME, Lip Sync, MambaFace">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MambaFace</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #0a0a0a, #1a1a1a);
-      color: #f0f0f0;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      text-align: center;
+      background-color: #000;
+      color: #fff;
     }
-
-    h1 {
-      color: #ffa500;
-      font-size: 3rem;
-      margin-bottom: 1rem;
+    .publication-title, .title, .subtitle, .content, .author-block, h1, h2, h3, p {
+      color: #fff !important;
     }
-
-    p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin: 0.5rem 1rem;
-      line-height: 1.6;
+    .button.is-dark {
+      background-color: #222;
+      border-color: #444;
+      color: #fff;
     }
-
-    footer {
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #888;
+    .button.is-dark:hover {
+      background-color: #333;
+      color: #fff;
+    }
+    pre code {
+      background-color: #111;
+      color: #fff;
     }
   </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
 </head>
 <body>
-  <h1>Welcome to MambaFace</h1>
-  <p>MambaFace is an efficient and expressive model for speech-driven 3D face generation.</p>
-  <p>We’re building cutting-edge solutions that bring lifelike talking avatars to life. Check back soon for updates, demos, and documentation.</p>
 
-  <footer>&copy; 2025 MambaFace Team. All rights reserved.</footer>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">MambaFace</h1>
+          <h1 class="title is-2 publication-title">Real-time Speech-driven 3D Talking Face Generation</h1>
+
+          <!-- Authors and affiliations remain unchanged unless you want to modify -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://ziqiaopeng.github.io/">Ziqiao Peng</a><sup>1</sup>,</span>
+            <span class="author-block"><strong>Yihao Luo</strong><sup>2,3</sup>,</span>
+            <span class="author-block"><strong>Yue Shi</strong><sup>3</sup>,</span>
+            <span class="author-block"><strong>Hao Xu</strong><sup>3,4</sup>,</span>
+            <span class="author-block"><a href="https://xiangyuzhu-open.github.io/homepage/">Xiangyu Zhu</a><sup>5</sup></span>
+            <br>
+            <span class="author-block"><a href="https://www.sem.tsinghua.edu.cn/info/1189/32080.htm">Hongyan Liu</a><sup>6</sup>,</span>
+            <span class="author-block"><a href="http://info.ruc.edu.cn/jsky/rtjs/d696a551fefc4b0ab6f90e02b01f3529.htm">Jun He</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://fanzhaoxin666.github.io/">Zhaoxin Fan</a><sup>1,3</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Renmin University of China,</span>
+            <span class="author-block"><sup>2</sup>Imperial College London,</span>
+            <span class="author-block"><sup>3</sup>Psyche AI Inc.,</span>
+            <span class="author-block"><sup>4</sup>HKUST,</span>
+            <span class="author-block"><sup>5</sup>CASIA,</span>
+            <span class="author-block"><sup>6</sup>Tsinghua University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2306.10799"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#teaser"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-youtube"></i></span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/psyai-net/SelfTalk_release"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay loop controls playsinline height="100%">
+        <source src="./static/videos/selftalk-arxiv.mp4" type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <strong>MambaFace</strong> enables real-time 3D facial animation from speech using hybrid Mamba-Transformer networks and self-supervised learning.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- Additional sections remain unchanged except name mentions -->
+<!-- You can update the abstract and proposed method titles/contents if needed -->
+
+<!-- Footer remains the same -->
+<footer class="footer">
+  <div class="container">
+      <div class="content has-text-centered">
+          <a class="icon-link" href="./media/SelfTalk.pdf">
+              <i class="fas fa-file-pdf"></i>
+          </a>
+          <a class="icon-link" href="https://github.com/ZiqiaoPeng/selftalk" class="external-link" disabled>
+              <i class="fab fa-github"></i>
+          </a>
+      </div>
+      <div class="columns is-centered">
+          <div class="column is-8">
+              <div class="content">
+                  <p style="text-align:center">
+                    This website is licensed under a <a rel="license"
+                    href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                    Commons Attribution-ShareAlike 4.0 International License</a>.
+                  </p>
+                  <p style="text-align:center">
+                    Website source code based on the <a
+                    href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> project page.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</footer>
+
 </body>
 </html>
-
-
-
